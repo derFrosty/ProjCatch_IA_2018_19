@@ -63,4 +63,10 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
         genome[index] = other.genome[index];
         other.genome[index] = aux;
     }
+
+    public void swapGenes(int indexA, int indexB) {
+        int aux = genome[indexA];
+        genome[indexA] = genome[indexB];
+        genome[indexB] = aux;
+    }
 }
