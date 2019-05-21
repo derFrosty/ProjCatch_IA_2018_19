@@ -14,6 +14,9 @@ public class CatchState extends State implements Cloneable {
     private int lineCatch;
     private int columnCatch;
     private int numBox = 0;
+    private int steps;
+    private int lineDoor;
+    private int columnDoor;
 
     public CatchState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -30,6 +33,11 @@ public class CatchState extends State implements Cloneable {
                     lineCatch = i;
                     columnCatch = j;
                 }
+
+                if(this.matrix[i][j] == Properties.DOOR){
+                    lineDoor = i;
+                    columnDoor = j;
+                }
             }
         }
     }
@@ -39,9 +47,7 @@ public class CatchState extends State implements Cloneable {
         this.matrix = new int[matrix.length][matrix.length];
 
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                this.matrix[i][j] = matrix[i][j];
-            }
+            System.arraycopy(matrix[i],0,this.matrix[i],0,matrix[i].length);
         }
         this.lineCatch = lineCatch;
         this.columnCatch = columnCatch;
@@ -55,12 +61,13 @@ public class CatchState extends State implements Cloneable {
     * */
 
     public void executeAction(Action action) {
+        matrix[lineDoor][columnDoor]=Properties.DOOR;
         action.execute(this);
-        // TODO
-        //steps++
+
+        steps++;
         fireUpdatedEnvironment();
 
-        throw new UnsupportedOperationException(); // delete after implementing
+        //throw new UnsupportedOperationException(); // delete after implementing
     }
 
     public boolean canMoveUp() {
@@ -121,9 +128,8 @@ public class CatchState extends State implements Cloneable {
     }
 */
     public int getSteps() {
-        //TODO
-        //throw new UnsupportedOperationException();
-        return 0;
+
+        return steps;
     }
 
     public int getSize() {

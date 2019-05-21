@@ -11,7 +11,6 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
     private LinkedList<Pair> pairs;
     private Cell cellCatch;
     private Cell door;
-    private double maxVP;
 
     public CatchProblemForGA(
             LinkedList<Cell> cellsBoxes,
@@ -33,16 +32,16 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
         return cellsBoxes;
     }
 
+    public Cell getCellCatch() {
+        return cellCatch;
+    }
+
+    public Cell getDoor() {
+        return door;
+    }
+
     public LinkedList<Pair> getPairs() {
         return pairs;
-    }
-
-    public double getMaxVP() {
-        return maxVP;
-    }
-
-    private double computeMaxVP(){
-        return maxVP;
     }
 
     @Override
