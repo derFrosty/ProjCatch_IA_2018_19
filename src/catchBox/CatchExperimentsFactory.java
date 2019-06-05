@@ -69,8 +69,8 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
             case "SWAP":
                 mutation = new MutationSwap<>(mutationProbability);
                 break;
-            case "TODO2": //TODO
-                mutation = new Mutation3<>(mutationProbability);
+            case "SCRAMBLE": //TODO
+                mutation = new MutationScramble<>(mutationProbability);
                 break;
         }
 

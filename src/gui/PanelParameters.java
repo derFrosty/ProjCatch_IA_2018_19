@@ -33,7 +33,7 @@ public class PanelParameters extends PanelAtributesValue {
     JComboBox comboBoxRecombinationMethods = new JComboBox(recombinationMethods);
     JTextField textFieldProbRecombination = new JTextField(PROB_RECOMBINATION, TEXT_FIELD_LENGHT);
 
-    String[] mutationMethods = {"Insert", "Swap", "TODO"};
+    String[] mutationMethods = {"Insert", "Swap", "Scramble"};
     JComboBox comboBoxMutationMethods = new JComboBox(mutationMethods);
     JTextField textFieldProbMutation = new JTextField(PROB_MUTATION, TEXT_FIELD_LENGHT);
 
@@ -130,7 +130,7 @@ public class PanelParameters extends PanelAtributesValue {
             case 1:
                 return new MutationSwap<>(mutationProbability);
             case 2:
-                return new Mutation3<>(mutationProbability);
+                return new MutationScramble<>(mutationProbability);
         }
         return null;
     }
