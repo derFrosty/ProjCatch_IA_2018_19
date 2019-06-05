@@ -128,7 +128,7 @@ public class PanelParameters extends PanelAtributesValue {
             case 0:
                 return new MutationInsert<>(mutationProbability);
             case 1:
-                return new Mutation2<>(mutationProbability);
+                return new MutationSwap<>(mutationProbability);
             case 2:
                 return new Mutation3<>(mutationProbability);
         }
