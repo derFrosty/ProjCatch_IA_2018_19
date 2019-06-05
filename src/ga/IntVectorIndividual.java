@@ -1,6 +1,8 @@
 package ga;
 
 
+import java.util.Arrays;
+
 public abstract class IntVectorIndividual<P extends Problem, I extends IntVectorIndividual> extends Individual<P, I> {
     //TODO this class might require the definition of additional methods and/or attributes
 
@@ -9,31 +11,28 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
     public IntVectorIndividual(P problem, int size) {
         super(problem);
         genome = new int[size];
+        boolean f;
+        int j;
+        for (int i = 0; i < size; i++) {
+            do {
+                j = GeneticAlgorithm.random.nextInt(size) + 1;
+                f = false;
 
-        int[] temp = new int[size];
+                for (int k = 0; k < i; k++) {
+                    if (genome[k] == j)
+                        f = true;
+                }
+            } while (f);
 
-        for (int i = 1; i <= size; i++) {
-
-            temp[i-1] = i;
+            genome[i] = j;
         }
-
-        for (int i = 1; i <= size; i++) {
-
-            int j = GeneticAlgorithm.random.nextInt(size);
-            int g = GeneticAlgorithm.random.nextInt(size);
-            int v = temp[j];
-            temp[j] = temp[g];
-            temp[j] = v;
-
-        }
-
-        genome = temp;
     }
 
     public IntVectorIndividual(IntVectorIndividual<P, I> original) {
         super(original);
         this.genome = new int[original.genome.length];
         System.arraycopy(original.genome, 0, genome, 0, genome.length);
+        System.out.println(Arrays.toString(genome));
     }
 
     @Override
@@ -41,7 +40,7 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
         return genome.length;
     }
 
-    public int getIndexof(int value){
+    public int getIndexof(int value) {
         for (int i = 0; i < genome.length; i++) {
             if (genome[i] == value)
                 return i;
