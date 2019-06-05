@@ -32,7 +32,6 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
         super(original);
         this.genome = new int[original.genome.length];
         System.arraycopy(original.genome, 0, genome, 0, genome.length);
-        System.out.println(Arrays.toString(genome));
     }
 
     @Override
