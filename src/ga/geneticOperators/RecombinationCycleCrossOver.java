@@ -3,12 +3,12 @@ package ga.geneticOperators;
 import ga.IntVectorIndividual;
 import ga.Problem;
 
-public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
+public class RecombinationCycleCrossOver<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
 
     //TODO this class might require the definition of additional methods and/or attributes
     int[] child1, child2;
 
-    public Recombination3(double probability) {
+    public RecombinationCycleCrossOver(double probability) {
         super(probability);
     }
 
@@ -17,10 +17,10 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         child1 = new int[ind1.getNumGenes()];
         child2 = new int[ind1.getNumGenes()];
 
-        cycle(ind1, ind2, child1);
+        cycleCompute(ind1, ind2, child1);
         vetorPositivo(ind1);
         vetorPositivo(ind2);
-        cycle(ind2, ind1, child2);
+        cycleCompute(ind2, ind1, child2);
 
         System.arraycopy(child1, 0, ind1.getGenome(), 0, child1.length);
         System.arraycopy(child2, 0, ind2.getGenome(), 0, child2.length);
@@ -28,7 +28,7 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         return;
     }
 
-    private void cycle(I ind1, I ind2, int[] child) {
+    private void cycleCompute(I ind1, I ind2, int[] child) {
 
         int parentValue = ind1.getGene(0);
         int cycleNumber = 1;
@@ -103,7 +103,6 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
 
     @Override
     public String toString() {
-        //TODO
-        throw new UnsupportedOperationException();
+        return "COX";
     }
 }

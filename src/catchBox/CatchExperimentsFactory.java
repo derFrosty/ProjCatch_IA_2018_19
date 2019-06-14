@@ -55,8 +55,8 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
             case "OX":
                 recombination = new RecombinationOrderCrossOver<>(recombinationProbability);
                 break;
-            case "TODO2": //TODO
-                recombination = new Recombination3<>(recombinationProbability);
+            case "COX":
+                recombination = new RecombinationCycleCrossOver<>(recombinationProbability);
                 break;
         }
 
@@ -69,7 +69,7 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
             case "SWAP":
                 mutation = new MutationSwap<>(mutationProbability);
                 break;
-            case "SCRAMBLE": //TODO
+            case "SCRAMBLE":
                 mutation = new MutationScramble<>(mutationProbability);
                 break;
         }
