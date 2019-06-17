@@ -25,7 +25,7 @@ public class MutationScramble<I extends IntVectorIndividual, P extends Problem<I
             cut2 = aux;
         }
 
-        for (int i = 0; i < Math.round((cut2-cut1)/2); i++) {
+        for (int i = 0; i < Math.round((cut2-cut1)/4); i++) {
             int g,j;
 
             j = GeneticAlgorithm.random.nextInt(cut2-cut1+1)+cut1;
