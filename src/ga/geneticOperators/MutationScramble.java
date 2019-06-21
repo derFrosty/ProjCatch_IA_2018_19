@@ -25,9 +25,11 @@ public class MutationScramble<I extends IntVectorIndividual, P extends Problem<I
             cut2 = aux;
         }
 
+        //misturar os valores entre cuts
+        //o número de trocas é 1/4 do número de valores entre os cuts
         for (int i = 0; i < Math.round((cut2-cut1)/4); i++) {
             int g,j;
-
+            //gerar 1 index aleatório entre o cut 1 e o cut 2
             j = GeneticAlgorithm.random.nextInt(cut2-cut1+1)+cut1;
 
             do {

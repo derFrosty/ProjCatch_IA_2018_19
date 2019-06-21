@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CatchState extends State implements Cloneable {
-    //TODO this class might require the definition of additional methods and/or attributes
 
     protected int[][] matrix;
     private int lineCatch;
@@ -21,20 +20,27 @@ public class CatchState extends State implements Cloneable {
     public CatchState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
 
+        //percorrer a matrix
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 this.matrix[i][j] = matrix[i][j];
 
+                //se a posição [i][j] for uma box
                 if(this.matrix[i][j] == Properties.BOX){
+                    //incrementamos o numero de boxes
                     numBox++;
                 }
 
+                //se a posição [i][j] for a posição onde o agente se encontra
                 if (this.matrix[i][j] == Properties.CATCH) {
+                    //guardamos as posições
                     lineCatch = i;
                     columnCatch = j;
                 }
 
+                //se a posição [i][j] for uma porta
                 if(this.matrix[i][j] == Properties.DOOR){
+                    //guardamos as posições
                     lineDoor = i;
                     columnDoor = j;
                 }
@@ -67,42 +73,53 @@ public class CatchState extends State implements Cloneable {
         steps++;
         fireUpdatedEnvironment();
 
-        //throw new UnsupportedOperationException(); // delete after implementing
     }
 
     public boolean canMoveUp() {
+        //se não excedermos as posições da matriz e se a posição acima não for uma parede
         return (lineCatch != 0 &&(matrix[lineCatch-1][columnCatch] != Properties.WALL));
     }
 
+    //se não excedermos as posições da matriz e se a posição à direita não for uma parede
     public boolean canMoveRight() {
         return (columnCatch != matrix.length-1 && (matrix[lineCatch][columnCatch+1] != Properties.WALL));
     }
 
+    //se não excedermos as posições da matriz e se a posição abaixo não for uma parede
     public boolean canMoveDown() {
         return (lineCatch != matrix.length-1 && (matrix[lineCatch+1][columnCatch]!= Properties.WALL));
     }
 
+    //se não excedermos as posições da matriz e se a posição à esquerda não for uma parede
     public boolean canMoveLeft() {
         return (columnCatch != 0 && (matrix[lineCatch][columnCatch-1]!=Properties.WALL));
     }
 
     public void moveUp() {
+        //a posição atual fica vazia
         matrix[lineCatch][columnCatch] = Properties.EMPTY;
+        //a posição do agente agora é esta
         matrix[--lineCatch][columnCatch] = Properties.CATCH;
     }
 
     public void moveRight() {
+        //a posição atual fica vazia
         matrix[lineCatch][columnCatch] = Properties.EMPTY;
+        //a posição do agente agora é esta
         matrix[lineCatch][++columnCatch] = Properties.CATCH;
     }
 
     public void moveDown() {
+        //a posição atual fica vazia
         matrix[lineCatch][columnCatch] = Properties.EMPTY;
+        //a posição do agente agora é esta
         matrix[++lineCatch][columnCatch] = Properties.CATCH;
     }
 
     public void moveLeft() {
+        //a posição atual fica vazia
         matrix[lineCatch][columnCatch] = Properties.EMPTY;
+        //a posição do agente agora é esta
         matrix[lineCatch][--columnCatch] = Properties.CATCH;
     }
     public int getNumBox() {
@@ -111,6 +128,7 @@ public class CatchState extends State implements Cloneable {
     }
 
     public void setCellCatch(int line, int column) {
+        //mudamos a posição do agente
         matrix[lineCatch][columnCatch] = Properties.EMPTY;
         matrix[line][column] = Properties.CATCH;
 
@@ -121,12 +139,7 @@ public class CatchState extends State implements Cloneable {
     public int[][] getMatrix() {
         return matrix;
     }
-/*
-    public void setGoal(int line, int column) {
-        //TODO
-        throw new UnsupportedOperationException();
-    }
-*/
+
     public int getSteps() {
 
         return steps;
@@ -167,6 +180,7 @@ public class CatchState extends State implements Cloneable {
 
 
     public double compute (int lineGoal, int columnGoal){
+        //heuristica
         return Math.abs(lineCatch-lineGoal) + Math.abs(columnCatch-columnGoal);
     }
 
@@ -198,6 +212,7 @@ public class CatchState extends State implements Cloneable {
     }
 
     @Override
+    //clone para quando já sabemos qual o número de caixas e onde está o catch
     public CatchState clone() {
         return new CatchState(matrix,lineCatch,columnCatch,numBox);
     }

@@ -17,10 +17,11 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
         this.fitness = 0;
 
-        Cell cell1 = problem.getCellCatch();
+        Cell cell1 = problem.getCellCatch(); //caixa onde estamos
 
-        Cell cell2 = problem.getCellsBoxes().get(genome[0]-1);
+        Cell cell2 = problem.getCellsBoxes().get(genome[0]-1); //
 
+        //distância do catch à primeira caixa do genoma
         for (Pair p: problem.getPairs()) {
             if(p.getCell1() == cell1 && p.getCell2()==cell2){
                 fitness= p.getValue();
@@ -28,7 +29,7 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
             }
         }
 
-
+        //distância entre todas as caixas do genoma por ordem
         for (int i = 0; i < genome.length - 1; i++) {
 
             cell1 =  problem.getCellsBoxes().get(genome[i]-1);
@@ -48,6 +49,7 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
         cell2 = problem.getDoor();
 
+        //distância da última caixa do genoma à porta
         for (Pair p: problem.getPairs()) {
             if(p.getCell1() == cell1 && p.getCell2()==cell2){
                 fitness+= p.getValue();

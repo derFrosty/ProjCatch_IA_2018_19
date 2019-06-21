@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
-    //TODO this class might require the definition of additional methods and/or attributes
     private Cell goalPosition;
     private List<Action> actions;
 
@@ -15,6 +14,7 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
         super(initialCatchState);
         this.goalPosition = goalPosition;
 
+        //lista de ações
         actions = new LinkedList<Action>(){{
            add(new ActionUp());
            add(new ActionLeft());
@@ -24,6 +24,7 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
 
     }
 
+    //qual a posição que queremos alcançar
     public Cell getGoalPosition() {
         return goalPosition;
     }
@@ -43,6 +44,7 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
         return successors;
     }
 
+    //ssaber se posição onde o agente está (linha e coluna) é a goal position
     public boolean isGoal(S state) {
         return state.getLineCatch()==getGoalPosition().getLine() && state.getColumnCatch()==getGoalPosition().getColumn();
     }

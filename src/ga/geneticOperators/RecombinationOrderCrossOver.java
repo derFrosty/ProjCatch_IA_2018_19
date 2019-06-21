@@ -32,6 +32,7 @@ public class RecombinationOrderCrossOver<I extends IntVectorIndividual, P extend
             cut2 = aux;
         }
 
+        //preenchimento dos filhos dentro dos cortes dos pais
         for (int i = cut1; i <= cut2; i++) {
             child1[i] = ind2.getGene(i);
             child2[i] = ind1.getGene(i);
@@ -47,6 +48,7 @@ public class RecombinationOrderCrossOver<I extends IntVectorIndividual, P extend
     }
 
     private void createChild(I ind, int[] child) {
+        //procurar no pai os elementos que já estão no filho e passá-los a negativo
         for (int i = cut1; i <= cut2; i++) {
 
             for (int j = 0; j < ind.getNumGenes(); j++) {
@@ -59,7 +61,7 @@ public class RecombinationOrderCrossOver<I extends IntVectorIndividual, P extend
             }
 
         }
-
+        //copiar para o filho os genes que estão a positivo
         for (int i = 0; i < ind.getNumGenes(); i++) {
             if (ind.getGene(i) > 0) {
                 for (int k = 0; k < child.length; k++) {

@@ -13,12 +13,14 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
         genome = new int[size];
         boolean f;
         int j;
+        //geração do genoma aleatoriamente
         for (int i = 0; i < size; i++) {
             do {
                 j = GeneticAlgorithm.random.nextInt(size) + 1;
                 f = false;
 
                 for (int k = 0; k < i; k++) {
+                    //se o número já estiver no genoma, a variavel passa a true e volta a gerar outro número
                     if (genome[k] == j)
                         f = true;
                 }

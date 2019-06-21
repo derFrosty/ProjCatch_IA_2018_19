@@ -14,6 +14,8 @@ public class MutationSwap<I extends IntVectorIndividual, P extends Problem<I>> e
     public void mutate(I ind) {
         int g,j;
 
+        //dá swap entre dois genes diferentes
+
         j = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
 
         do {

@@ -14,7 +14,7 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
 
     public CatchProblemForGA(
             LinkedList<Cell> cellsBoxes,
-            LinkedList<Pair> pairs,
+            LinkedList<Pair> pairs, //contém as distências entre todos os elmentos
             Cell cellCatch,
             Cell door) {
 
